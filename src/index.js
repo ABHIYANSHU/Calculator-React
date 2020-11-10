@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import InputBox from './calculator';
 import Test from './calculator';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Test />
+    <InputBox />
   </React.StrictMode>,
   document.getElementById('root')
 );

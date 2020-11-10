@@ -1,0 +1,32 @@
+* {
+    font-size: large;
+    box-sizing: border-box;
+}
+
+.display {
+    border: 2%;
+    width: 100%;
+}
+
+.container {
+    display: block;
+    padding: 0.5%;
+    margin: 0.5%;
+}
+
+.btn {
+    width: 25%;
+    cursor: pointer;
+    color: #fff;
+    background-color: gainsboro;
+    border-radius: 1%px;
+    box-shadow: 0 1% #999;
+}
+
+.clear {
+    width: 100%;
+}
+
+.btn:hover{
+	background: linear-gradient(gainsboro, blue);
+}
