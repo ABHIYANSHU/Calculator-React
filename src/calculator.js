@@ -88,7 +88,7 @@ function InputBox() {
                 <br/>
                 {
                     listofnum.map(n => (
-                        <button className="btn" key={n} onClick={() => SetNumber(parseFloat(n))} >{n}</button>
+                        <button className="btn item" key={n} onClick={() => SetNumber(parseFloat(n))} >{n}</button>
                     ))
                 }
 

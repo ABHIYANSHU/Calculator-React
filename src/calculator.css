@@ -5,17 +5,21 @@
 
 .display {
     border: 2%;
-    width: 100%;
+    grid-column: span 12;
 }
 
 .container {
-    display: block;
-    padding: 0.5%;
-    margin: 0.5%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.item {
+    grid-column: span 4;
 }
 
 .btn {
-    width: 25%;
     cursor: pointer;
     color: #fff;
     background-color: gainsboro;
