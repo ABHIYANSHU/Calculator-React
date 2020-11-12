@@ -1,7 +1,7 @@
 .container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(13, 1fr);
+    grid-template-rows: repeat(15, 1fr);
     margin: 2%;
 }
 
@@ -21,4 +21,12 @@
     font-weight: bolder;
     background-color: gray;
     color: white;
+}
+
+.large {
+    margin-top: 1%;
+    margin-right: 0%;
+    margin-left: 0%;
+    grid-column: span 4;
+    grid-row: span 3;
 }

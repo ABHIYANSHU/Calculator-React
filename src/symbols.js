@@ -62,6 +62,10 @@ const symbols =
     },
     {
         id: 15,
+        value: '/'
+    },
+    {
+        id: 16,
         value: '='
     }
 ];

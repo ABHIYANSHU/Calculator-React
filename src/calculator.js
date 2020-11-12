@@ -30,35 +30,37 @@ function Calculator() {
             case '-':
             case 'x':
             case '/':
-                if(displayValue.indexOf('.')==-1 || displayValue.indexOf('.')==displayValue.length-1){
+                if(displayValue.toString().indexOf('.')==-1 || displayValue.toString().indexOf('.')==displayValue.length-1){
                     setnumber1(displayValue);
                     setdisplay('');
                     setopt(operation);
                 }
                 break;
             case '=':
-                if(displayValue.indexOf('.')==-1 || displayValue.indexOf('.')==displayValue.length-1){
+                if(displayValue.toString().indexOf('.')==-1 || displayValue.toString().indexOf('.')==displayValue.length-1){
+                    var ans='';
                     switch(opt){
                         case '+':
-                            setdisplay(''+parseFloat(number1)+parseFloat(displayValue));
+                            ans = parseFloat(number1)+parseFloat(displayValue);
                             break;
                         case '-':
-                            setdisplay(''+parseFloat(number1)-parseFloat(displayValue));
+                            ans = parseFloat(number1)-parseFloat(displayValue);
                             break;
                         case 'x':
-                            setdisplay(''+parseFloat(number1)*parseFloat(displayValue));
+                            ans = parseFloat(number1)*parseFloat(displayValue);
                             break;
                         case '/':
-                            if (parseFloat(displayValue)==0){
-                                setdisplay('Cannot divide by 0');
+                            if (parseFloat(displayValue)===0.0){
+                                ans = 'Cannot Divide by 0';
                             }
                             else {
-                                setdisplay(''+parseFloat(number1)/parseFloat(displayValue));
+                                ans = parseFloat(number1)/parseFloat(displayValue);
                             }
                             break;
                         default:
                             console.log('No proper operator selected');
                     }
+                    setdisplay(''+ans);
                     setnumber1('');
                     setopt('');
                 }
@@ -78,7 +80,7 @@ function Calculator() {
                 <input type="textbox" className="display" value={displayValue} readOnly />                
                 {
                     symbols.map(n => (
-                        <button className={"btn"} key={n.id} onClick={() => performOperation(n.value)} >{n.value}</button>
+                        <button className={n.id===16 ? "btn large":"btn"} key={n.id} onClick={() => performOperation(n.value)} >{n.value}</button>
                     ))
                 }
             </div>
