@@ -1,106 +1,88 @@
 import React, { useState } from 'react';
 import './calculator.css';
+import symbols from './symbols';
 
-function InputBox() {
+function Calculator() {
     const [displayValue, setdisplay] = useState('');
-    const [operator, setoperator] = useState('');
-    const [number1, setnumber] = useState(0);
+    const [number1, setnumber1] = useState('');
+    const [opt, setopt] = useState('');
 
-    const listofnum = [1, 2, 3, 4, 5, 6, 7 , 8, 9, 0];
-
-    function AddNumber(num1) {
-        console.log(typeof this + ' : ' + num1);
-        setnumber(num1);
-        setoperator('+');
-        setdisplay(0);
-    }
-
-    function DiffNumber(num1) {
-        console.log(typeof this + ' : ' + num1);
-        setnumber(num1);
-        setoperator('-');
-        setdisplay(0);
-    }
-
-    function MultiplyNumber(num1) {
-        console.log(typeof this + ' : ' + num1);
-        setnumber(num1);
-        setoperator('x');
-        setdisplay(0);
-    }
-
-    function DivideNumber(num1) {
-        console.log(typeof this + ' : ' + num1);
-        setnumber(num1);
-        setoperator('/');
-        setdisplay(0);
-    }
-
-    function AddDecimal(num1) {
-        num1 = num1 + '.';
-        console.log(typeof this + ' : ' + num1);
-        setnumber(num1);
-        setdisplay(num1);
-    }
-
-    function Equal(num2) {
-        setnumber(parseFloat(number1));
-        num2 = parseFloat(num2);
-        console.log('Number 1 : ' + number1);
-        console.log('Number 2 : ' + num2);
-        switch (operator) {
+    function performOperation(operation) {
+        switch(operation) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                setdisplay(displayValue + operation);
+                break;
+            case '.':
+                if(displayValue.indexOf('.')==-1) {
+                    setdisplay(displayValue + operation);
+                }
+                break;
             case '+':
-                setdisplay(number1 + num2);
-                break;
             case '-':
-                setdisplay(number1 - num2);
-                break;
             case 'x':
-                setdisplay(number1 * num2);
-                break;
             case '/':
-                if(num2 == 0){
-                    setdisplay("Cannot Divide by 0");
+                if(displayValue.indexOf('.')==-1 || displayValue.indexOf('.')==displayValue.length-1){
+                    setnumber1(displayValue);
+                    setdisplay('');
+                    setopt(operation);
                 }
-                else{
-                    setdisplay(number1 / num2);
+                break;
+            case '=':
+                if(displayValue.indexOf('.')==-1 || displayValue.indexOf('.')==displayValue.length-1){
+                    switch(opt){
+                        case '+':
+                            setdisplay(''+parseFloat(number1)+parseFloat(displayValue));
+                            break;
+                        case '-':
+                            setdisplay(''+parseFloat(number1)-parseFloat(displayValue));
+                            break;
+                        case 'x':
+                            setdisplay(''+parseFloat(number1)*parseFloat(displayValue));
+                            break;
+                        case '/':
+                            if (parseFloat(displayValue)==0){
+                                setdisplay('Cannot divide by 0');
+                            }
+                            else {
+                                setdisplay(''+parseFloat(number1)/parseFloat(displayValue));
+                            }
+                            break;
+                        default:
+                            console.log('No proper operator selected');
+                    }
+                    setnumber1('');
+                    setopt('');
                 }
+                break;
+            case 'C':
+                setdisplay('');
+                setnumber1('');
+                setopt('');
                 break;
             default:
-                setdisplay(displayValue);
+                console.log("Select a Valid Operator");
         }
-        setoperator('');
-    }
-
-    function SetNumber(num) {
-        setdisplay('' + displayValue + num);
-    }
-
-    function Clear() {
-        SetNumber(0);
-        setdisplay(0);
-        setoperator('');
     }
 
     return (
             <div className="container">
-                <input type="textbox" className="display" onChange={(e) => setdisplay(e.target.value)} value={displayValue} readOnly />
-                <br/>
+                <input type="textbox" className="display" value={displayValue} readOnly />                
                 {
-                    listofnum.map(n => (
-                        <button className="btn item" key={n} onClick={() => SetNumber(parseFloat(n))} >{n}</button>
+                    symbols.map(n => (
+                        <button className={"btn"} key={n.id} onClick={() => performOperation(n.value)} >{n.value}</button>
                     ))
                 }
-
-                <button className="btn" onClick={() => AddDecimal(parseFloat(displayValue))} >.</button>
-                <button className="btn" onClick={() => AddNumber(parseFloat(displayValue))} >+</button>
-                <button className="btn" onClick={() => DiffNumber(parseFloat(displayValue))} >-</button>
-                <button className="btn" onClick={() => MultiplyNumber(parseFloat(displayValue))} >x</button>
-                <button className="btn" onClick={() => DivideNumber(parseFloat(displayValue))} >/</button>
-                <button className="btn" onClick={() => Equal(parseFloat(displayValue))} >=</button>
-                <button className="btn clear" onClick={() => Clear()} >Clear</button>
             </div>
            );
 }
 
-export default InputBox;
+export default Calculator;
