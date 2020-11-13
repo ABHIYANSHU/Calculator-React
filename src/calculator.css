@@ -19,8 +19,19 @@
     grid-row: span 2;
     font-size: 18px;
     font-weight: bolder;
-    background-color: gray;
+    background-image: linear-gradient(to right, black, black);
     color: white;
+    box-shadow: 0 5px gray;
+}
+
+.btn:hover{
+    background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+}
+
+.btn:active {
+    box-shadow: 0 1px gray;
+    transform: translateY(4px);
+    background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
 }
 
 .large {
