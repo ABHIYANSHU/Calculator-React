@@ -67,6 +67,10 @@ const symbols =
     {
         id: 16,
         value: '='
+    },
+    {
+        id: 17,
+        value: 'x^y'
     }
 ];
 

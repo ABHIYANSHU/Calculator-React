@@ -22,7 +22,7 @@ function Calculator() {
                 setdisplay(displayValue + operation);
                 break;
             case '.':
-                if(displayValue.toString().indexOf('.')==-1) {
+                if(displayValue.toString().indexOf('.')===-1) {
                     setdisplay(displayValue + operation);
                 }
                 break;
@@ -30,14 +30,15 @@ function Calculator() {
             case '-':
             case 'x':
             case '/':
-                if(displayValue.toString().indexOf('.')==-1 || displayValue.toString().indexOf('.')!=displayValue.length-1){
+            case 'x^y':
+                if(displayValue.toString().indexOf('.')===-1 || displayValue.toString().indexOf('.')!==displayValue.length-1){
                     setnumber1(displayValue);
                     setdisplay('');
                     setopt(operation);
                 }
                 break;
             case '=':
-                if(displayValue.toString().indexOf('.')==-1 || displayValue.toString().indexOf('.')!=displayValue.length-1){
+                if(displayValue.toString().indexOf('.')===-1 || displayValue.toString().indexOf('.')!==displayValue.length-1){
                     var ans='';
                     console.log(displayValue.toString().indexOf('.'));
                     switch(opt){
@@ -57,6 +58,9 @@ function Calculator() {
                             else {
                                 ans = parseFloat(number1)/parseFloat(displayValue);
                             }
+                            break;
+                        case 'x^y':
+                            ans = Math.pow(parseFloat(number1), parseFloat(displayValue))
                             break;
                         default:
                             console.log('No proper operator selected');
