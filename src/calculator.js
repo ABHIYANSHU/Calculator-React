@@ -158,17 +158,19 @@ function Calculator() {
     }
 
     return (
-            <div className="container">
-                <input type="textbox" className="display" value={displayValue} readOnly />                
-                {
-                    symbols.map(n => (
-                        <button className={n.id===16 ? "btn large":"btn"} key={n.id} onClick={() => performOperation(n.value)} >{n.value}</button>
-                    ))
-                }
-                <footer>
-                    <h3>(c) Abhinav Srivastava</h3>
-                </footer>
-            </div>
+            <>
+                <div className="container">
+                    <input type="textbox" className="display" value={displayValue} readOnly />                
+                    {
+                        symbols.map(n => (
+                            <button className={n.id===16 ? "btn large":"btn"} key={n.id} onClick={() => performOperation(n.value)} >{n.value}</button>
+                        ))
+                    }
+                </div>
+                <div className="footer">
+                    <h2 className="content"> Abhinav Srivastava </h2>
+                </div>
+            </>
            );
 }
 
